@@ -113,7 +113,7 @@ const saveAll = async () => {
 </script>
 
 <template>
-  <div class="container my-5">
+  <div class="container-fluid my-5">
     <h1 class="text-center mb-4">База пользователей</h1>
 
     <div v-if="loading" class="alert alert-info text-center">
@@ -218,6 +218,7 @@ const saveAll = async () => {
             <th>ID</th>
             <th>Ф.И.О.</th>
             <th>Логин ПК</th>
+            <th>Пароль ПК</th>
             <th>Логин Outlook</th>
             <th>Пароль Outlook</th>
             <th>Логин Directum</th>
@@ -233,6 +234,7 @@ const saveAll = async () => {
               <td>{{ user.id }}</td>
               <td><input v-model="editForm.fullName" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.pcLogin" class="form-control form-control-sm" /></td>
+              <td><input v-model="editForm.pcPassword" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.outlookLogin" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.outlookPassword" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.directumLogin" class="form-control form-control-sm" /></td>
@@ -249,6 +251,7 @@ const saveAll = async () => {
               <td>{{ user.id }}</td>
               <td>{{ user.fullName }}</td>
               <td>{{ user.pcLogin }}</td>
+              <td>{{ user.pcPassword }}</td>
               <td>{{ user.outlookLogin }}</td>
               <td>{{ user.outlookPassword }}</td>
               <td>{{ user.directumLogin }}</td>
@@ -278,4 +281,5 @@ const saveAll = async () => {
   background-color: #f8f9fa;
   border-color: #dee2e6;
 }
+
 </style>
