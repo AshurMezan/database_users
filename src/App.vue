@@ -24,12 +24,12 @@ onMounted(async () => {
 
 const newUser = ref({
   fullName: '',
-  pcLogin: '',
-  pcPassword: '',
+  domainLogin: '',
+  armName: '',
   outlookLogin: '',
-  outlookPassword: '',
+  sipName: '',
   directumLogin: '',
-  directumPassword: '',
+  assistant: '',
   vipnetVersion: '',
   vipnetPassword: ''
 })
@@ -72,12 +72,12 @@ const addUser = () => {
 
   newUser.value = {
     fullName: '',
-    pcLogin: '',
-    pcPassword: '',
+    domainLogin: '',
+    armName: '',
     outlookLogin: '',
-    outlookPassword: '',
+    sipName: '',
     directumLogin: '',
-    directumPassword: '',
+    assistant: '',
     vipnetVersion: '',
     vipnetPassword: ''
   }
@@ -133,13 +133,13 @@ const saveAll = async () => {
               <input v-model="newUser.fullName" class="form-control" placeholder="Иванов Иван Иванович" />
             </div>
             <div class="col-md-3">
-              <label class="form-label">Логин ПК</label>
-              <input v-model="newUser.pcLogin" class="form-control" placeholder="ivanov_i" />
+              <label class="form-label">Логин домена</label>
+              <input v-model="newUser.domainLogin" class="form-control" placeholder="ivanov_i" />
             </div>
             <div class="col-md-3">
-              <label class="form-label">Пароль от ПК</label>
+              <label class="form-label">Имя АРМ</label>
               <input
-                  v-model="newUser.pcPassword"
+                  v-model="newUser.armName"
                   type="text"
                   class="form-control"
               />
@@ -164,8 +164,8 @@ const saveAll = async () => {
               <input v-model="newUser.outlookLogin" class="form-control" placeholder="ivanov.i@company.ru" />
             </div>
             <div class="col-md-6">
-              <label class="form-label">Пароль Outlook</label>
-              <input v-model="newUser.outlookPassword" class="form-control" />
+              <label class="form-label">Name SIP</label>
+              <input v-model="newUser.sipName" class="form-control" />
             </div>
 
             <div class="col-md-6">
@@ -173,8 +173,8 @@ const saveAll = async () => {
               <input v-model="newUser.directumLogin" class="form-control" />
             </div>
             <div class="col-md-6">
-              <label class="form-label">Пароль Directum</label>
-              <input v-model="newUser.directumPassword" class="form-control" />
+              <label class="form-label">ID Ассистент</label>
+              <input v-model="newUser.assistant" class="form-control" />
             </div>
 
             <div class="col-12 text-end">
@@ -217,12 +217,12 @@ const saveAll = async () => {
           <tr>
             <th>ID</th>
             <th>Ф.И.О.</th>
-            <th>Логин ПК</th>
-            <th>Пароль ПК</th>
+            <th>Логин домена</th>
+            <th>Имя АРМ</th>
             <th>Логин Outlook</th>
-            <th>Пароль Outlook</th>
+            <th>Name SIP</th>
             <th>Логин Directum</th>
-            <th>Пароль Directum</th>
+            <th>Ассистент</th>
             <th>Версия ViPNet</th>
             <th>Пароль ViPNet</th>
             <th style="width:140px">Действия</th>
@@ -230,15 +230,16 @@ const saveAll = async () => {
           </thead>
           <tbody>
           <tr v-for="(user, index) in users" :key="user.id">
+            <!-- Режим редактирования -->
             <template v-if="editingId === user.id">
               <td>{{ user.id }}</td>
               <td><input v-model="editForm.fullName" class="form-control form-control-sm" /></td>
-              <td><input v-model="editForm.pcLogin" class="form-control form-control-sm" /></td>
-              <td><input v-model="editForm.pcPassword" class="form-control form-control-sm" /></td>
+              <td><input v-model="editForm.domainLogin" class="form-control form-control-sm" /></td>
+              <td><input v-model="editForm.armName" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.outlookLogin" class="form-control form-control-sm" /></td>
-              <td><input v-model="editForm.outlookPassword" class="form-control form-control-sm" /></td>
+              <td><input v-model="editForm.sipName" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.directumLogin" class="form-control form-control-sm" /></td>
-              <td><input v-model="editForm.directumPassword" class="form-control form-control-sm" /></td>
+              <td><input v-model="editForm.assistant" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.vipnetVersion" class="form-control form-control-sm" /></td>
               <td><input v-model="editForm.vipnetPassword" class="form-control form-control-sm" /></td>
               <td>
@@ -247,15 +248,16 @@ const saveAll = async () => {
               </td>
             </template>
 
+            <!-- Режим просмотра -->
             <template v-else>
               <td>{{ user.id }}</td>
               <td>{{ user.fullName }}</td>
-              <td>{{ user.pcLogin }}</td>
-              <td>{{ user.pcPassword }}</td>
+              <td>{{ user.domainLogin }}</td>
+              <td>{{ user.armName }}</td>
               <td>{{ user.outlookLogin }}</td>
-              <td>{{ user.outlookPassword }}</td>
+              <td>{{ user.sipName }}</td>
               <td>{{ user.directumLogin }}</td>
-              <td>{{ user.directumPassword }}</td>
+              <td>{{ user.assistant }}</td>
               <td>{{ user.vipnetVersion }}</td>
               <td>{{ user.vipnetPassword }}</td>
               <td>

@@ -24,12 +24,12 @@ db.serialize(() => {
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fullName TEXT NOT NULL,
-            pcLogin TEXT,
-            pcPassword TEXT,
+            domainLogin TEXT,
+            armName TEXT,
             outlookLogin TEXT,
-            outlookPassword TEXT,
+            sipName TEXT,
             directumLogin TEXT,
-            directumPassword TEXT,
+            assistant TEXT,
             vipnetVersion TEXT,
             vipnetPassword TEXT
         )
@@ -58,12 +58,12 @@ app.post("/api/users", (req, res) => {
     const sql = `
         INSERT INTO users (
             fullName,
-            pcLogin,
-            pcPassword,
+            domainLogin,
+            armName,
             outlookLogin,
-            outlookPassword,
+            sipName,
             directumLogin,
-            directumPassword,
+            assistant,
             vipnetVersion,
             vipnetPassword
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -73,12 +73,12 @@ app.post("/api/users", (req, res) => {
         sql,
         [
             user.fullName || "",
-            user.pcLogin || "",
-            user.pcPassword || "",
+            user.domainLogin || "",
+            user.armName || "",
             user.outlookLogin || "",
-            user.outlookPassword || "",
+            user.sipName || "",
             user.directumLogin || "",
-            user.directumPassword || "",
+            user.assistant || "",
             user.vipnetVersion || "",
             user.vipnetPassword || "",
         ],
@@ -123,12 +123,12 @@ app.post("/api/users/save-all", (req, res) => {
             const stmt = db.prepare(`
                 INSERT INTO users (
                     fullName,
-                    pcLogin,
-                    pcPassword,
+                    domainLogin,
+                    armName,
                     outlookLogin,
-                    outlookPassword,
+                    sipName,
                     directumLogin,
-                    directumPassword,
+                    assistant,
                     vipnetVersion,
                     vipnetPassword
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -139,12 +139,12 @@ app.post("/api/users/save-all", (req, res) => {
             users.forEach((user) => {
                 stmt.run([
                     user.fullName || "",
-                    user.pcLogin || "",
-                    user.pcPassword || "",
+                    user.domainLogin || "",
+                    user.armName || "",
                     user.outlookLogin || "",
-                    user.outlookPassword || "",
+                    user.sipName || "",
                     user.directumLogin || "",
-                    user.directumPassword || "",
+                    user.assistant || "",
                     user.vipnetVersion || "",
                     user.vipnetPassword || "",
                 ]);
